@@ -8,7 +8,9 @@ dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 app.use(express.json());
-app.use(cors()); // Enable CORS for all routes
+app.use(cors()); 
+// Enable CORS for all routes
+
 
 app.use(express.urlencoded({ extended: true }));
 
