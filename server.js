@@ -8,9 +8,16 @@ dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 app.use(express.json());
-app.use(cors()); // Enable CORS for all routes
+// app.use(cors()); 
+// // Enable CORS for all routes
 
-app.use(express.urlencoded({ extended: true }));
+app.use(cors({
+  origin: 'vercellink', // Replace with her actual frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// app.use(express.urlencoded({ extended: true }));
 
 // MongoDB connection
 const uri = process.env.MONGODB_URI;
