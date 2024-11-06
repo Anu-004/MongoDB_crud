@@ -50,7 +50,7 @@ app.post('/api/post', async (req, res) => {
 // get method (usin limit)
 app.get("/api/post", async (req, res) => {
   try {
-    // 
+    //
     const limit = Number(req.query.limit);
     const posts = limit?await Post.find().limit(limit):await Post.find();
     res.status(200).json(posts);
@@ -72,4 +72,8 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+
+
+
 
