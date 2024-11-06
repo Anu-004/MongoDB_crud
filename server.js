@@ -12,7 +12,7 @@ app.use(express.json());
 // // Enable CORS for all routes
 
 app.use(cors({
-  origin: 'https://mongo-db-crud-virid.vercel.app/api/post', // Replace with her actual frontend URL
+  origin: 'https://mongo-db-crud-virid.vercel.app/', // Replace with her actual frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
