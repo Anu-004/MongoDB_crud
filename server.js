@@ -48,9 +48,22 @@ app.post('/api/post', async (req, res) => {
 });
 
 // get method (usin limit)
+app.get("/api/post/:id", async (req, res) => {
+  try {
+    const GetPost = await Post.findById(req.params.id);
+    if (GetPost) {
+      res.status(200).json(GetPost);
+    } else {
+      res.status(404).json({ message: `Post with id ${req.params.id} not found` });
+    }
+    
+  }
+  catch (err) {
+    res.status(400).json({ message: "Something went wrong", err });
+  }
+})
 app.get("/api/post", async (req, res) => {
   try {
-    //
     const limit = Number(req.query.limit);
     const posts = limit?await Post.find().limit(limit):await Post.find();
     res.status(200).json(posts);
@@ -60,6 +73,32 @@ app.get("/api/post", async (req, res) => {
   }
 })
 
+app.put("/api/post/:id", async (req, res) => {
+  try {
+    const UpdatePost = await Post.findByIdAndUpdate(req.params.id, req.body,{new:true});
+    if (UpdatePost) {
+    
+      res.status(200).json(UpdatePost);
+    } else {
+      res.status(404).json({ message: `Post with id ${req.params.id} not found` });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Something went wrong", err });
+  }
+})
+
+app.delete("/api/post/:id", async (req, res) => {
+  try {
+    const DeletePost = await Post.findByIdAndDelete(req.params.id);
+    if (DeletePost) {
+      res.status(200).json(DeletePost);
+    } else {
+      res.status(404).json({ message: `Post with id ${req.params.id} not found` });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Something went wrong", err });
+  }
+})
 // const movieSchema = new mongoose.Schema({
 //   name: { type: String, required: true },
 //   description: { type: String, required: true },
